@@ -15,8 +15,15 @@ multiline comments
 Game();
 
 function Game(){
+    
+    var pc = {
+        silversword:0,
+        shortsword:0,
+        health:10,
+        chainmail:0,
+    }
   
-    alert("Welcome to the land of the Fey");
+    alert("Welcome to the land of the Fey. things tend to get out of hand here, so we have recently implememented large amounts of order. Whenever you want to do something, please put in what action you want to perform, and then the world will ask you what you want to do it to. \n A few things you can do in most places are 'inspect', 'move' and 'take'. we like to tell you that now so we don't have to tell you EVERY STINKING TIME. Have a nice last few moments of your life. See you in the next one!);
     
     var PC = prompt("What is your name, miscreant?");
     
@@ -27,7 +34,7 @@ function Game(){
     Temple();
     
     function Temple(){
-        var temple = prompt("You wake up against a column in a building entirely made out of white marble. You are battered and bruised, and you cannot seem to remember why you are here. Where is this? Who are you? Questions that you may never remember the answer to. One thing is for sure, the Elf next to you probably shouldn’t have a sword in his face.").toLowerCase();
+        var temple = prompt("You wake up against a column in a building entirely made out of white marble. You are battered and bruised, and you cannot seem to remember why you are here. Where is this? Who are you? Questions that you may never remember the answer to. One thing is for sure, the Elf next to you probably shouldn’t have a sword in his face. \n -inspect (I won't tell you this one again) \n -take (I won't tell you this one anymore either) \n -move (I'll still tell you this one)").toLowerCase();
         
         if(temple == "sleep"){
                 alert("you let unconciousness close back around you.");
@@ -73,10 +80,18 @@ function Game(){
             var templeTake = prompt("What do you want to take?");
         
             if(templeTake == "sword"){
+                if(pc.silversword == 0){
                 alert("The elegant blade pulls cleanly from the Elf’s skull. No blood is left on the blade. You relize that there is a scabbard at your side that fits this blade perfectly. What kind of person were you? You put the sword in the scabbard.");
+                pc.silversword = 1;
+                }
+                else(alert("you already took that"));
             }
             else if(templeTake == "shortsword" || templeTake == "shortswords"){
+                if(pc.shortsword = 0){
                 alert("You take both of the shorswords next to the Elf. They don't fit in your scabbard at all, so you strap them into your belt.");
+                pc.shortsword = 2;
+                }
+                else(alert("you already took those"));
             }
             else if(templeTake == "armor" || templeTake == "leather armor"){
                 alert("Your chainmail is already better than this decimated armor, and it would take too long to get off him. you really need to figure out... something.");
