@@ -23,11 +23,11 @@ function Game(){
         chainmail:0,
     }
   
-    alert("Welcome to the land of the Fey. things tend to get out of hand here, so we have recently implememented large amounts of order. Whenever you want to do something, please put in what action you want to perform, and then the world will ask you what you want to do it to. \n A few things you can do in most places are 'inspect', 'move' and 'take'. we like to tell you that now so we don't have to tell you EVERY STINKING TIME. Have a nice last few moments of your life. See you in the next one!);
+    alert("Welcome to the land of the Fey. things tend to get out of hand here, so we have recently implememented large amounts of order. Whenever you want to do something, please put in what action you want to perform, and then the world will ask you what you want to do it to. \n A few things you can do in most places are 'inspect', 'move' and 'take'. we like to tell you that now so we don't have to tell you EVERY STINKING TIME. Have a nice last few moments of your life. See you in the next one!");
     
     var PC = prompt("What is your name, miscreant?");
     
-    var LastWords = prompt("What a name. huh. you know, I really don't care. Your friend is dead. You will be soon. Any last words, "+ PC+"?");
+    var lastWords = prompt("What a name. huh. you know, I really don't care. Your friend is dead. You will be soon. Any last words, "+ PC+"?");
     alert("I really don't care, to be honest. Time to end this once and for all!");
     alert("The figure before you suddenly flashes with bright light and there is an explosion. You hear a scream, most likely your own.");
     
@@ -48,7 +48,7 @@ function Game(){
                 }
         
         else if(temple == "inspect"){
-            var templeInspect = prompt("Inspect what?");
+            var templeInspect = prompt("Inspect what?").toLowerCase();
             
             if(templeInspect == "sword"){
                 alert("The slender white blade appears to be made entirely of mirror-like silver. It is the most incredible blade you have ever seen.");
@@ -77,17 +77,17 @@ function Game(){
         
         //need to put in the inventory for this bit, otherwise it is useless.
         else if(temple == "take"){
-            var templeTake = prompt("What do you want to take?");
+            var templeTake = prompt("What do you want to take?").toLowerCase();
         
-            if(templeTake == "sword"){
+            if(templeTake == "sword" || templeTake == "silversword"){
                 if(pc.silversword == 0){
-                alert("The elegant blade pulls cleanly from the Elf’s skull. No blood is left on the blade. You relize that there is a scabbard at your side that fits this blade perfectly. What kind of person were you? You put the sword in the scabbard.");
+                alert("The elegant blade pulls cleanly from the Elf’s skull. No blood is left on the blade. You realize that there is a scabbard at your side that fits this blade perfectly. What kind of person were you? You put the sword in the scabbard.");
                 pc.silversword = 1;
                 }
                 else(alert("you already took that"));
             }
             else if(templeTake == "shortsword" || templeTake == "shortswords"){
-                if(pc.shortsword = 0){
+                if(pc.shortsword == 0){
                 alert("You take both of the shorswords next to the Elf. They don't fit in your scabbard at all, so you strap them into your belt.");
                 pc.shortsword = 2;
                 }
@@ -101,14 +101,41 @@ function Game(){
         }
         
         else if(temple == "cheat" || temple == "win"){
-            alert("You think you're smart, don't you?")
+            alert("You think you're smart, don't you?");
         }
         
-        else if(temple == ""){
-            
+        else if(temple == "move" || temple == "go"){
+            var templeMove = prompt("where do you want to go?").toLowerCase();
+            if(templeMove == "south" || templeMove == "exit" || templeMove == "to exit" || templeMove == "out" || templeMove == "out the southern exit"){
+                alert("you walk out of the decimated doors into another room");
+                Hallway();
+            }
+            else(alert("the only way to go is out the southern exit."));
+            Temple();
         }
     
         else(alert("I don't know what -"+temple+"- is!"));
         Temple();
+    }
+    function Hallway(){
+        var hallway = prompt("You are in a long hallway with ten doors, and one large set of double-doors at the end of the hallway. \n -move \n -interact with door").toLowerCase();
+        if(hallway == "move"){
+            var hallMove = prompt("move where? \n -north/back/temple \n -through door #(1-10)/door #(1-10) \n -through double-doors/double-doors");
+            switch(hallMove){
+                    case ""
+                    //I want to use cse, but I need several routes
+            }
+        }
+        else if(hallway == "inspect"){
+            
+        }
+        else if(hallway == "interact with door"){
+            
+        }
+        else if(hallway == "take"){
+            
+        }
+        else(alert("I don't know what "+hallway+" is."))
+        Hallway();
     }
 }
