@@ -121,10 +121,44 @@ function Game(){
         var hallway = prompt("You are in a long hallway with ten doors, and one large set of double-doors at the end of the hallway. \n -move \n -interact with door").toLowerCase();
         if(hallway == "move"){
             var hallMove = prompt("move where? \n -north/back/temple \n -through door #(1-10)/door #(1-10) \n -through double-doors/double-doors");
+          //  /*
             switch(hallMove){
-                    case ""
-                    //I want to use cse, but I need several routes
+                case "north" || "back" || "temple":
+                    alert("you go back through the smashed doorway into the temple.");
+                    Temple();
+                    break;
+                case "through door 1" || "door 1":
+                    alert("for some strange reason, the architect decided it was a good idea to have a brick wall here.");
+                    break;
+                case "through door 2" || "door 2":
+                    
+                    break;
+                case "through door 3" || "door 3":
+                    
+                    break;
+                case "through door 4" || "door 4":
+                    
+                    break;
+                case "through door 5" || "door 5":
+                    
+                    break;
+                case "through door 6" || "door 6":
+                    
+                    break;
+                case "through door 7" || "door 7":
+                    
+                    break;
+                case "through door 8" || "door 8":
+                    
+                    break;
+                case "through door 9" || "door 9":
+                    
+                    break;
+                case "through door 10" || "door 10":
+                    
+                    break;
             }
+           // */
         }
         else if(hallway == "inspect"){
             
