@@ -21,6 +21,15 @@ function Game(){
         shortsword:0,
         health:10,
         chainmail:0,
+        ddkey:0,
+        key1:0,
+        key2:0,
+        key3:0,
+    }
+    var doors = {
+        dd:0,
+        d4:0,
+        
     }
   
     alert("Welcome to the land of the Fey. things tend to get out of hand here, so we have recently implememented large amounts of order. Whenever you want to do something, please put in what action you want to perform, and then the world will ask you what you want to do it to. \n A few things you can do in most places are 'inspect', 'move' and 'take'. we like to tell you that now so we don't have to tell you EVERY STINKING TIME. Have a nice last few moments of your life. See you in the next one!");
@@ -120,45 +129,84 @@ function Game(){
     function Hallway(){
         var hallway = prompt("You are in a long hallway with ten doors, and one large set of double-doors at the end of the hallway. \n -move \n -interact with door").toLowerCase();
         if(hallway == "move"){
-            var hallMove = prompt("move where? \n -north/back/temple \n -through door #(1-10)/door #(1-10) \n -through double-doors/double-doors");
-          //  /*
+            var hallMove = prompt("move where? \n -north/back/temple \n -through door #(1-10)/door #(1-10) (ex. 'through door 1') \n -through double-doors/double-doors").toLowerCase();
             switch(hallMove){
                 case "north" || "back" || "temple":
                     alert("you go back through the smashed doorway into the temple.");
                     Temple();
                     break;
+                    
                 case "through door 1" || "door 1":
                     alert("for some strange reason, the architect decided it was a good idea to have a brick wall here.");
                     break;
+                    
                 case "through door 2" || "door 2":
-                    
+                    alert("before you can respond, a hand darts out of the darkness and shanks you. As you recoil in pain, the door closes again. probably shouldn't try that again.");
+                    pc.health -= 2;
                     break;
+                    
                 case "through door 3" || "door 3":
-                    
+                    alert("This architect really likes brick walls.");
                     break;
+                    
                 case "through door 4" || "door 4":
-                    
+                    if(door.d4 == 0){
+                        alert("you did see the lock on the door, right?");
+                    }
+                    else if(door.d4 == 1){
+                        alert("the lock is no longer effective, and you pass through the door.");
+                        Room2();
+                    }
                     break;
+                    
                 case "through door 5" || "door 5":
-                    
+                    alert("it's another brick wall... seriously?");
                     break;
+                    
                 case "through door 6" || "door 6":
-                    
+                    alert("you open the door to find... a room, what did you expect?");
+                    Room1();
                     break;
+                    
                 case "through door 7" || "door 7":
-                    
+                    alert("okay, this architect has a problem with brick walls.");
                     break;
+                    
                 case "through door 8" || "door 8":
                     
                     break;
-                case "through door 9" || "door 9":
                     
+                case "through door 9" || "door 9":
+                    alert("another. freaking. brick. wall. what fun.");
                     break;
+                    
                 case "through door 10" || "door 10":
                     
                     break;
+                    
+                case "through double-doors" || "double-doors":
+                    if(door.dd == "0"){
+                        alert("the doors are locked with locks. What did you expect?");
+                    }
+                    else if(door.dd == "1"){
+                        alert("the doors are slightly less locked now. whoop dee do.");
+                    }
+                    else if(door.dd == "2"){
+                        alert("wow. much door. many lock. now many less lock. door still locked.");
+                    }
+                    else if(door.dd == "3"){
+                        alert("so... you have unlocked a few locks. that's nice.");
+                    }
+                    else if(door.dd == "4"){
+                        alert("turns out the other locks were illusory. the door opens");
+                        //end of game. make something happen here.
+                    }
+                    break;
+                    
+                default:
+                    alert("I don't know what "+hallMove+" is.");
+                    Hallway();
             }
-           // */
         }
         else if(hallway == "inspect"){
             
