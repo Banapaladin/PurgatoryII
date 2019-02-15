@@ -32,6 +32,9 @@ function Game(){
         d8:0,
         d10:0,
     }
+    var checkInventory = function(){
+        
+    }
   
     alert("Welcome to the land of the Fey. things tend to get out of hand here, so we have recently implememented large amounts of order. Whenever you want to do something, please put in what action you want to perform, and then the world will ask you what you want to do it to. \n A few things you can do in most places are 'inspect', 'move' and 'take'. we like to tell you that now so we don't have to tell you EVERY STINKING TIME. Have a nice last few moments of your life. See you in the next one!");
     
@@ -53,8 +56,7 @@ function Game(){
                 Temple();
             }
             else if(quit){
-                alert("game over!");
-                
+                GameEnd();
             }
                 }
         
@@ -149,8 +151,15 @@ function Game(){
                     
                 case "through door 2":
                 case "door 2":
-                    alert("before you can respond, a hand darts out of the darkness and shanks you. As you recoil in pain, the door closes again. probably shouldn't try that again.");
+                    alert("before you can respond, a hand darts out of the darkness and shanks you.");
                     pc.health -= 2;
+                    if(pc.health > 0){
+                        alert("As you recoil in pain, the door closes again. probably shouldn't try that again.")
+                    }
+                    else if(pc.health < 1){
+                        alert("you dead sonny.")
+                        GameEnd();
+                    }
                     break;
                     
                 case "through door 3":
@@ -227,8 +236,9 @@ function Game(){
                         alert("so... you have unlocked a few locks. that's nice.");
                     }
                     else if(doors.dd == 4){
-                        alert("turns out the other locks were illusory. the door opens");
-                        //end of game. make something happen here.
+                        alert("turns out the other locks were illusory. The doors are now unlocked.");
+                        alert("you push open the large set of double doors into the world beyond. Welcome to the land of the Fey. No, you aren't dead. no, you didn't stab the elf. what did you do? You'll never know, because we won't tell you. Have a nice cliffhanger! \n \n -FIN-");
+                        GameEnd();
                     }
                     break;
                     
@@ -278,9 +288,11 @@ function Game(){
                     
                 case "door 8":
                     if(doors.d8 == 0){
-                        alert("This is a locked copper door. expensive."); 
+                        alert("This is a locked silver door. expensive."); 
                     }
-                    else if()
+                    else if(doors.d8 == 1){
+                        alert("This fancy pants silver door has been unlocked. by you. who else could have done it?");
+                    }
                     break;
                     
                 case "door 9":
@@ -288,16 +300,35 @@ function Game(){
                     break;
                     
                 case "door 10":
-                    
+                    if(doors.d10 == 0){
+                        alert("This locked golden door is freaking amazing. solid gold. unfortunately, you don't think you could carry it out. also, it's locked.");
+                    }
+                    else if(doors.d10 == 1){
+                        alert("you wasted a solid gold key to unlock the solid gold door. sad, but necessary. No, you still can't take the door.");
+                    }
                     break;
                     
                 case "doubledoors":
-                    
+                    if(doors.dd == 0){
+                        alert("These massive, gilded doors are covered, every inch, in locks. So many locks. something tells you this is PROBABLY the way out...");
+                    }
+                    else if(doors.dd == 1){
+                        alert("Now that you used that random key on a random lock, and it worked... there is one less lock on this door.");
+                    }
+                    else if(doors.dd == 2){
+                        alert("You've used two keys on this door now... how many are left?");
+                    }
+                    else if(doors.dd == 3){
+                        alert("So. Many. Locks.");
+                    }
+                    else if(doors.dd == 4){
+                        alert("Surprisingly, all the locks but three are gone. those three are the ones you unlocked. you can open it now... but then... where would you go? \n Probably anywhere but here.");
+                    }
                     break;
                     
                 case "area":
                 case "room":
-                    
+                    alert("This large hallway has ten doors, five on each side, and then a large set of double doors at the far end that is literally COVERED in locks. One door is bronze (door 4), another is silver (door 8), another is Gold (door 10), and all the rest are wooden. The gaping hole in the wall behind you probably once held another set of double doors, but is in smithereens.");
                     break;
                     
                 default:
@@ -306,10 +337,83 @@ function Game(){
             }
         }
         else if(hallway == "interact with door"){
-            
+            var hallInteract = prompt("which door? \n -doubledoors \n -door #");
+            switch(hallInteract){
+                case "doubledoors":
+                    var dd = prompt("do what to the double doors? \n -open \n -unlock/use key").toLowerCase;
+                    if(dd == "open"){
+                        if(doors.dd == 4){
+                            alert("you push open the large set of double doors into the world beyond. Welcome to the land of the Fey. No, you aren't dead. no, you didn't stab the elf. what did you do? You'll never know, because we won't tell you. Have a nice cliffhanger! \n \n -FIN-");
+                            GameEnd();
+                        }
+                        else(alert("fat chance, fatso."));
+                    }
+                    else if(dd == "unlock" || dd == "use key"){
+                        if(pc.ddkey = 0){
+                            alert("You kind of don't have any keys for any of the locks on this door, which are all strangely identical.");
+                        }
+                        else if(pc.ddkey > 0){
+                            alert("You stick the key in a random lock and turn. the lock pops open, and the key dissolves in your hand.");
+                            pc.ddkey -= 1;
+                            doors.dd += 1;
+                            if(doors.dd == 4){
+                                alert("As the key dissolves, so do all of the remaining locked locks. The doors are now unlocked.")
+                            }
+                            else(alert("The door is still locked."));
+                        }
+                    }
+                    else(alert("I don't know what "+dd+" is."));
+                    Hallway();
+                    break;
+                
+                case "door 1":
+                    var d1 = prompt("do what to the door? \n -open")
+                    if()
+                    break;
+                    
+                case "door 2":
+                    
+                    break;
+                    
+                case "door 3":
+                    
+                    break;
+                    
+                case "door 4":
+                    
+                    break;
+                    
+                case "door 5":
+                    
+                    break;
+                    
+                case "door 6":
+                    
+                    break;
+                    
+                case "door 7":
+                    
+                    break;
+                    
+                case "door 8":
+                    
+                    break;
+                    
+                case "door 9":
+                    
+                    break;
+                    
+                case "door 10":
+                    
+                    break;
+            }
         }
         else if(hallway == "take"){
             
+        }
+        else if(hallway == "cheat"){
+            alert("you asked for it. seeya sucker.");
+            GameEnd();
         }
         else(alert("I don't know what "+hallway+" is."))
         Hallway();
@@ -333,5 +437,11 @@ function Game(){
     
     function Room4(){
         
+    }
+    
+    
+    function GameEnd(){
+        alert("Game over, go away or restart.");
+        GameEnd();
     }
 }
