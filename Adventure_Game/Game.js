@@ -32,9 +32,11 @@ function Game(){
         d8:0,
         d10:0,
     }
+    /*
     var checkInventory = function(){
         
     }
+    */
   
     alert("Welcome to the land of the Fey. things tend to get out of hand here, so we have recently implememented large amounts of order. Whenever you want to do something, please put in what action you want to perform, and then the world will ask you what you want to do it to. \n A few things you can do in most places are 'inspect', 'move' and 'take'. we like to tell you that now so we don't have to tell you EVERY STINKING TIME. Have a nice last few moments of your life. See you in the next one!");
     
@@ -133,9 +135,9 @@ function Game(){
     
     
     function Hallway(){
-        var hallway = prompt("You are in a long hallway with ten doors, and one large set of double-doors at the end of the hallway. \n -move \n -interact with door").toLowerCase();
+        var hallway = prompt("You are in a long hallway with ten doors, and one large set of double-doors at the end of the hallway. \n -move \n -interact with door/interact/door").toLowerCase();
         if(hallway == "move"){
-            var hallMove = prompt("move where? \n -north/back/temple \n -through door #(1-10)/door #(1-10) (ex. 'through door 1') \n -through double-doors/double-doors").toLowerCase();
+            var hallMove = prompt("move where? \n -north/back/temple \n -through door #(1-10)/door #(1-10) (ex. 'through door 1') \n -through doubledoors/doubledoors").toLowerCase();
             switch(hallMove){
                 case "north":
                 case "back":
@@ -157,7 +159,7 @@ function Game(){
                         alert("As you recoil in pain, the door closes again. probably shouldn't try that again.")
                     }
                     else if(pc.health < 1){
-                        alert("you dead sonny.")
+                        alert("you dead sonny. I don't know whether to laugh or to shake my head in shame for the suicidal nature of some gamer kids.")
                         GameEnd();
                     }
                     break;
@@ -173,7 +175,7 @@ function Game(){
                         alert("you did see the lock on the door, right?");
                     }
                     else if(doors.d4 == 1){
-                        alert("the lock is no longer effective, and you pass through the door.");
+                        alert("the lock is now gone, and you pass through the door.");
                         Room2();
                     }
                     break;
@@ -221,9 +223,9 @@ function Game(){
                     }
                     break;
                     
-                case "through double-doors":
-                case "double-doors":
-                    if(door.dd == "0"){
+                case "through doubledoors":
+                case "doubledoors":
+                    if(doors.dd == 0){
                         alert("the doors are locked with locks. What did you expect?");
                     }
                     else if(doors.dd == 1){
@@ -248,7 +250,7 @@ function Game(){
             }
         }
         else if(hallway == "inspect"){
-            var hallInspect = prompt("Inspect what? \n -door # \n -doubledoors \n -area/room").toLowerCase;
+            var hallInspect = prompt("Inspect what? \n -door # \n -doubledoors \n -area/room").toLowerCase();
             switch(hallInspect){
                 case "door 1":
                     alert("It appears to be an unlocked door.");
@@ -336,11 +338,11 @@ function Game(){
                     Hallway();
             }
         }
-        else if(hallway == "interact with door"){
+        else if(hallway == "interact with door" || hallway == "interact" || hallway == "door"){
             var hallInteract = prompt("which door? \n -doubledoors \n -door #");
             switch(hallInteract){
                 case "doubledoors":
-                    var dd = prompt("do what to the double doors? \n -open \n -unlock/use key").toLowerCase;
+                    var dd = prompt("do what to the double doors? \n -open \n -unlock/use key").toLowerCase();
                     if(dd == "open"){
                         if(doors.dd == 4){
                             alert("you push open the large set of double doors into the world beyond. Welcome to the land of the Fey. No, you aren't dead. no, you didn't stab the elf. what did you do? You'll never know, because we won't tell you. Have a nice cliffhanger! \n \n -FIN-");
@@ -367,49 +369,162 @@ function Game(){
                     break;
                 
                 case "door 1":
-                    var d1 = prompt("do what to the door? \n -open")
-                    if()
+                    var d1 = prompt("do what to the door? \n -open \n -admire").toLowerCase();
+                    if(d1 == "open"){
+                        alert("you think I have the time to code another path for every single door? you're crazy. if you want to go through, use the 'move' command, for heaven's sake!");
+                    }
+                    else if(d1 == "admire" || d1 == "look at"){
+                            alert("it's a door. made of wood. chances are, if you were to open it, you would make some progress.");
+                    }
+                    else(alert("I don't know what "+d1+" is."));
                     break;
                     
                 case "door 2":
-                    
+                    var d2 = prompt("do what to the door? \n -open \n -admire").toLowerCase();
+                    if(d2 == "open"){
+                        alert("you think I have the time to code another path for every single door? you're crazy. if you want to go through, use the 'move' command, for heaven's sake!");
+                    }
+                    else if(d2 == "admire" || d2 == "look at"){
+                            alert("it's a door. made of wood. chances are, if you were to open it, you would make some progress.");
+                    }
+                    else(alert("I don't know what "+d2+" is."));
                     break;
                     
                 case "door 3":
-                    
+                    var d3 = prompt("do what to the door? \n -open \n -admire").tolowercase();
+                    if(d3 == "open"){
+                        alert("you think I have the time to code another path for every single door? you're crazy. if you want to go through, use the 'move' command, for heaven's sake!");
+                    }
+                    else if(d3 == "admire" || d3 == "look at"){
+                            alert("it's a door. made of wood. chances are, if you were to open it, you would make some progress.");
+                    }
+                    else(alert("I don't know what "+d3+" is."));
                     break;
                     
                 case "door 4":
-                    
+                    var d4 = prompt("do what to the bronze door? \n -open \n -admire \n -unlock/use key").toLowerCase();
+                    if(d4 == "open"){
+                        alert("you think I have the time to code another path for every single door? you're crazy. if you want to go through, use the 'move' command, for heaven's sake!");
+                    }
+                    else if(d4 == "admire" || d4 == "look at"){
+                            alert("it's a door. made of bronze. chances are, if you were to open it, you would make some progress.");
+                    }
+                    else if(d4 == "unlock" || d4 == "use key"){
+                        if(pc.key1 == 0){
+                            alert("I'm afraid you don't have the bronze key. nice try though.");
+                        }
+                        else if(pc.key1 == 1){
+                            alert("you insert the bronze key into the lock and turn. the key vaporizes with the lock.");
+                            pc.key1 -= 1;
+                            doors.d4 = 1;
+                        }
+                    }
+                    else(alert("I don't know what "+d4+" is."));
                     break;
                     
                 case "door 5":
-                    
+                    var d5 = prompt("do what to the door? \n -open \n -admire").toLowerCase();
+                    if(d5 == "open"){
+                        alert("you think I have the time to code another path for every single door? you're crazy. if you want to go through, use the 'move' command, for heaven's sake!");
+                    }
+                    else if(d5 == "admire" || d5 == "look at"){
+                            alert("it's a door. made of wood. chances are, if you were to open it, you would make some progress.");
+                    }
+                    else(alert("I don't know what "+d5+" is."));
                     break;
                     
                 case "door 6":
-                    
+                    var d6 = prompt("do what to the door? \n -open \n -admire").toLowerCase();
+                    if(d6 == "open"){
+                        alert("you think I have the time to code another path for every single door? you're crazy. if you want to go through, use the 'move' command, for heaven's sake!");
+                    }
+                    else if(d6 == "admire" || d6 == "look at"){
+                            alert("it's a door. made of wood. The chances are really high that, if you were to open it, you would make some progress.");
+                    }
+                    else(alert("I don't know what "+d6+" is."));
                     break;
                     
                 case "door 7":
-                    
+                    var d7 = prompt("do what to the door? \n -open \n -admire").toLowerCase();
+                    if(d7 == "open"){
+                        alert("you think I have the time to code another path for every single door? you're crazy. if you want to go through, use the 'move' command, for heaven's sake!");
+                    }
+                    else if(d7 == "admire" || d7 == "look at"){
+                            alert("it's a door. made of wood. chances are, if you were to open it, you would make some progress.");
+                    }
+                    else(alert("I don't know what "+d7+" is."));
                     break;
                     
                 case "door 8":
-                    
+                    var d8 = prompt("do what to the door? \n -open \n -admire \n -unlock/use key").toLowerCase();
+                    if(d8 == "open"){
+                        alert("you think I have the time to code another path for every single door? you're crazy. if you want to go through, use the 'move' command, for heaven's sake!");
+                    }
+                    else if(d8 == "admire" || d8 == "look at"){
+                            alert("it's a door. made of silver. chances are, if you were to open it, you would make some progress.");
+                    }
+                    else if(d8 == "unlock" || d8 == "use key"){
+                        alert("once again, the key vaporizes, along with the lock.");
+                        pc.key2 -= 1;
+                        doors.d8 = 1;
+                    }
+                    else(alert("I don't know what "+d8+" is."));
                     break;
                     
                 case "door 9":
-                    
+                    var d9 = prompt("do what to the door? \n -open \n -admire").toLowerCase();
+                    if(d9 == "open"){
+                        alert("you think I have the time to code another path for every single door? you're crazy. if you want to go through, use the 'move' command, for heaven's sake!");
+                    }
+                    else if(d9 == "admire" || d9 == "look at"){
+                            alert("it's a door. made of wood. chances are, if you were to open it, you would make some progress.");
+                    }
+                    else(alert("I don't know what "+d9+" is."));
                     break;
                     
                 case "door 10":
-                    
+                    var d10 = prompt("do what to the door? \n -open \n -admire \n -take/steal(does it even belong to anybody?) \n -unlock/use key").toLowerCase();
+                    if(d10 == "open"){
+                        alert("you think I have the time to code another path for every single door? you're crazy. if you want to go through, use the 'move' command, for heaven's sake!");
+                    }
+                    else if(d10 == "admire" || d10 == "look at"){
+                            alert("it's a door. made of gold. chances are, if you were to open it, you would make some progress.");
+                    }
+                    else if(d10 == "take" || d10 == "steal"){
+                        alert("nope. magically indestructible and irremovable. not a chance.")
+                    }
+                    else if(d10 == "unlock" || d10 == "use key"){
+                        alert("sadly, just like the last two doors, that solid gold key vaporized with the solid gold lock. at least now you can go through the door... but it's so sad you couldn't keep the key.");
+                        pc.key3 -= 1;
+                        doors.d10 = 1;
+                    }
+                    else(alert("I don't know what "+d10+" is."));
                     break;
             }
         }
         else if(hallway == "take"){
-            
+            var hallTake = prompt("what do you want to take? \n -door # \n lock").toLowerCase();
+            switch(hallTake){
+                case "door 1":
+                case "door 2":
+                case "door 3":
+                case "door 4":
+                case "door 5":
+                case "door 6":
+                case "door 7":
+                case "door 8":
+                case "door 9":
+                case "door 10":
+                case "doubledoors":
+                    alert("Did you honestly think you could take a door? Especially the metal ones or the big ones, but why on earth do you need a door? Get your own door, you greedy completionist!");
+                    break;
+                case "lock":
+                case "locks":
+                    alert("The locks are attached to the doors... so no, you cna't take them, and even if you could, they would be closed, so you still wouldn't be able to.");
+                    break;
+                default:
+                    alert("I don't know what "+hallTake+" is.");
+            }
         }
         else if(hallway == "cheat"){
             alert("you asked for it. seeya sucker.");
@@ -421,7 +536,30 @@ function Game(){
     
     
     function Room1(){
-        
+        var room1 = prompt("As you enter the room, you notice a large number of small, gelatinous shapes on the floor. suddenly, they all clamber together, and you are 'staring' down a massive slime. it begins to slowly creep towards you. what do you do? \n -run/leave \n -attack \n -talk \n -inspect").toLowerCase();
+        switch(room1){
+            case "run":
+            case "leave":
+                alert("like the coward you are, you dash back out of the door, but as you go to close it, the slime shoots out a tentacle, bruising your side. you manage to close the door on it. you hear slurping and rolling sounds before all is quiet behind the door.");
+                pc.health -= 2;
+                break;
+            case "attack":
+                
+                //I really want this to only list the objects that the player has in their inventory.
+                
+                var attack = prompt("attack the slime with what? \n -").toLowerCase();
+                if(attack == "silver sword" || attack == "sword" || attack == "longsword"){
+                    
+                }
+                break;
+            case "talk":
+            case "diplomacy":
+                
+                break;
+            case "inspect":
+                
+                break;
+        }
     }
     
     
