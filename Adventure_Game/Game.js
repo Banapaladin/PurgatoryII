@@ -25,6 +25,7 @@ function Game(){
         key1:0,
         key2:0,
         key3:0,
+        guilt:0,
     }
     var doors = {
         dd:0,
@@ -32,24 +33,21 @@ function Game(){
         d8:0,
         d10:0,
     }
-    /*
-    var checkInventory = function(){
-        
-    }
-    */
+    var bookswitch = 0;
+    
   
     alert("Welcome to the land of the Fey. things tend to get out of hand here, so we have recently implememented large amounts of order. Whenever you want to do something, please put in what action you want to perform, and then the world will ask you what you want to do it to. \n A few things you can do in most places are 'inspect', 'move' and 'take'. we like to tell you that now so we don't have to tell you EVERY STINKING TIME. Have a nice last few moments of your life. See you in the next one!");
     
     var PC = prompt("What is your name, miscreant?");
     
-    var lastWords = prompt("What a name. huh. you know, I really don't care. Your friend is dead. You will be soon. Any last words, "+ PC+"?");
-    alert("I really don't care, to be honest. Time to end this once and for all!");
+    prompt("What a name. huh. you know, I really don't care. You will be dead soon. Any last words, "+ PC+"?");
+    alert("I really don't care, to be honest. Time to end this once and for all, you scum!");
     alert("The figure before you suddenly flashes with bright light and there is an explosion. You hear a scream, most likely your own.");
     
     Temple();
     
     function Temple(){
-        var temple = prompt("You wake up against a column in a building entirely made out of white marble. You are battered and bruised, and you cannot seem to remember why you are here. Where is this? Who are you? Questions that you may never remember the answer to. One thing is for sure, the Elf next to you probably shouldn’t have a sword in his face. \n -inspect (I won't tell you this one again) \n -take (I won't tell you this one anymore either) \n -move (I'll still tell you this one)").toLowerCase();
+        var temple = prompt("You wake up against a column in a building entirely made out of white marble. You are battered and bruised, and you cannot seem to remember why you are here. Where is this? Who are you? Questions that you may never remember the answer to. One thing is for sure, the Elf next to you probably shouldn’t have a sword in his face. \n -inspect (I won't tell you this one again) \n -take (I won't tell you this one anymore either) \n -move (I'll still tell you this one) \n -pray").toLowerCase();
         
         if(temple == "sleep"){
                 alert("you let unconciousness close back around you.");
@@ -58,9 +56,25 @@ function Game(){
                 Temple();
             }
             else if(quit){
+                alert("seriously? if you don't want to play, go away.");
                 GameEnd();
             }
                 }
+        else if(temple == "pray" || temple == "repent"){
+            if(pc.guilt == 0){
+                alert("nah. not feeling it. maybe I'll come back later. (heavy foreshadowing)");
+            }
+            else if(pc.guilt == 2){
+                alert("you aren't feeling particularly religious today. Maybe you should come back when you need to repent or something.");
+            }
+            else if(pc.guilt == 4){
+                alert("you sit down in front of the altar and try to pray, but you just can't focus right now. Just not feeling like you particularly need to repent right now. maybe later.");
+            }
+            else if(pc.guilt == 6){
+                alert("You reach out to God to forgive you of the horrible things you have done. You seen to have brutalized this elf, and destroyed a holy text. The guilt tears at your soul. You hear a quiet voice saying \"Don't worry, it might be your sword, but you didn't kill that elf. The book was a book of evil magic, thank you.\" \n The voice is so reassuring, it's as if it were perfectly trustworthy. You believe its words. You feel great. Your guilt slips away, and so does your consciousness. You wake up in heaven. \n No, I won't describe it, use your imagination!");
+                GameEnd();
+            }
+        }
         
         else if(temple == "inspect"){
             var templeInspect = prompt("Inspect what?").toLowerCase();
@@ -82,7 +96,19 @@ function Game(){
                 alert("the building around you appears to be some sort of religious center, with high barreled ceilings, massive stained glass windows depicting beautiful scenes, and a shattered stone altar at the front. There is one exit, which appears to have been a large wooden door, and is now in smithereens around the gaping hole in the otherwise perfect southern wall.");
             }
             else if(templeInspect == "book"){
-                alert("the tome crumbled to dust in your hands. You couldn’t read the script on the front anyways.");
+                if(bookswitch == 0){
+                    pc.guilt += 2;
+                    alert("the tome crumbled to dust in your hands. You couldn’t read the script on the front anyways.");
+                    bookswitch += 1;
+                }
+                else if(bookswitch == 1){
+                    alert("That book was probably a holy text. and you ruined it.")
+                    pc.guilt += 2;
+                    bookswitch += 1;
+                }
+                else if(bookswitch == 2){
+                    alert("why is this book so interesting to you? did it make you feel that guilty?");
+                }
                 }
             
             else(alert("I don't know what -"+templeInspect+"- is!"));
@@ -96,15 +122,16 @@ function Game(){
         
             if(templeTake == "sword" || templeTake == "silversword"){
                 if(pc.silversword == 0){
-                alert("The elegant blade pulls cleanly from the Elf’s skull. No blood is left on the blade. You realize that there is a scabbard at your side that fits this blade perfectly. What kind of person were you? You put the sword in the scabbard.");
+                alert("The elegant blade pulls cleanly from the Elf’s skull. No blood is left on the blade. You realize that there is a scabbard at your side that fits this blade perfectly. What kind of person were you? Did you kill this man? You put the sword in the scabbard.");
                 pc.silversword = 1;
+                pc.guilt += 2;
                 }
                 else(alert("you already took that"));
             }
             else if(templeTake == "shortsword" || templeTake == "shortswords"){
                 if(pc.shortsword == 0){
                 alert("You take both of the shorswords next to the Elf. They don't fit in your scabbard at all, so you strap them into your belt.");
-                pc.shortsword = 2;
+                pc.shortsword = 1;
                 }
                 else(alert("you already took those"));
             }
@@ -542,14 +569,24 @@ function Game(){
             case "leave":
                 alert("like the coward you are, you dash back out of the door, but as you go to close it, the slime shoots out a tentacle, bruising your side. you manage to close the door on it. you hear slurping and rolling sounds before all is quiet behind the door.");
                 pc.health -= 2;
+                if(pc.health < 1){
+                    alert("you've simply taken one too many hits")(
+                }
                 break;
             case "attack":
                 
                 //I really want this to only list the objects that the player has in their inventory.
                 
-                var attack = prompt("attack the slime with what? \n -").toLowerCase();
-                if(attack == "silver sword" || attack == "sword" || attack == "longsword"){
-                    
+                var attack = prompt("attack the slime with what? \n -fist \n -n -weapon").toLowerCase();
+                if(attack == "fist"){
+                    alert('you punch the gelatinous creature. OBVIOUSLY, your hand sinks in. You feel a great pain as the slime presses in on your arm, crushing it. You scream as you pull out your hand. You can still use the arm, it seems.');
+                    pc.health -= 3;
+                }
+                else if(attack == "weapon"){
+                    if(pc.silversword == 0 || pc.shortsword == 0){
+                        alert("you don't have one. The slime nonchalantly slaps you against the wall. you feel some ribs break.");
+                        pc.health -=
+                    }
                 }
                 break;
             case "talk":
