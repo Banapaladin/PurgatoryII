@@ -11,6 +11,21 @@ multiline comments
 // takes ok or cancel feedback
 //prompt("What kind of cheese?");
 // text feedback
+/*
+while loop:
+while(!confirm("are you sure you want that?")){
+    something = prompt("what do you want");
+}
+for loop:
+for(i = 1; 1 <= var1; 1++){
+inventory.var1 ++;
+inventory.var2 --;
+console.log("you have "+inv.var1+" var1);
+console.log("you have "+inv.var2+" var2);
+}
+alert("you have gained "+var1+" var1, thanks.);
+Recursive();
+*/
 
 Game();
 
@@ -34,6 +49,7 @@ function Game(){
         d10:0,
     }
     var bookswitch = 0;
+    var slime = 1;
     
   
     alert("Welcome to the land of the Fey. things tend to get out of hand here, so we have recently implememented large amounts of order. Whenever you want to do something, please put in what action you want to perform, and then the world will ask you what you want to do it to. \n A few things you can do in most places are 'inspect', 'move' and 'take'. we like to tell you that now so we don't have to tell you EVERY STINKING TIME. Have a nice last few moments of your life. See you in the next one!");
@@ -215,7 +231,13 @@ function Game(){
                 case "through door 6":
                 case "door 6":
                     alert("you open the door to find... a room, what did you expect?");
+                    if(slime == 1){
+                    alert("As you enter the room, you notice a large number of small, gelatinous shapes on the floor. suddenly, they all clamber together, and you are 'staring' down a massive slime. it begins to slowly creep towards you.");
                     Room1();
+                    }
+                    else if(slime == 0){
+                        Room12();
+                    }
                     break;
                     
                 case "through door 7":
@@ -563,42 +585,106 @@ function Game(){
     
     
     function Room1(){
-        var room1 = prompt("As you enter the room, you notice a large number of small, gelatinous shapes on the floor. suddenly, they all clamber together, and you are 'staring' down a massive slime. it begins to slowly creep towards you. what do you do? \n -run/leave \n -attack \n -talk \n -inspect").toLowerCase();
+        var room1 = prompt("What do you do? \n -run/leave \n -attack \n -talk \n -inspect").toLowerCase();
         switch(room1){
             case "run":
             case "leave":
                 alert("like the coward you are, you dash back out of the door, but as you go to close it, the slime shoots out a tentacle, bruising your side. you manage to close the door on it. you hear slurping and rolling sounds before all is quiet behind the door.");
                 pc.health -= 2;
                 if(pc.health < 1){
-                    alert("you've simply taken one too many hits")(
+                    alert("You've simply taken one too many hits, you crumple to the ground as the adrenaline leaves you, and die a very sad death. A cowardly death.");
+                    GameEnd();
                 }
                 break;
             case "attack":
                 
                 //I really want this to only list the objects that the player has in their inventory.
                 
-                var attack = prompt("attack the slime with what? \n -fist \n -n -weapon").toLowerCase();
+                var attack = prompt("attack the slime with what? \n -fist \n -weapon").toLowerCase();
                 if(attack == "fist"){
                     alert('you punch the gelatinous creature. OBVIOUSLY, your hand sinks in. You feel a great pain as the slime presses in on your arm, crushing it. You scream as you pull out your hand. You can still use the arm, it seems.');
                     pc.health -= 3;
+                    if(pc.health < 0){
+                        alert("unfortunately, you can't use the rest of your body, and are dead.");
+                        GameEnd();
+                    }
                 }
                 else if(attack == "weapon"){
-                    if(pc.silversword == 0 || pc.shortsword == 0){
-                        alert("you don't have one. The slime nonchalantly slaps you against the wall. you feel some ribs break.");
-                        pc.health -=
+                    if(pc.silversword == 0 && pc.shortsword == 0){
+                        alert("You don't have a weapon. The slime nonchalantly slaps you against the wall. You feel some ribs break.");
+                        pc.health -= 3;
+                    }
+                    else if(pc.silversword == 1 && pc.shortsword == 1){
+                        var weapon = confirm("Do you want to use the shortswords?");
+                        if(weapon){
+                            alert("you swing the shortswords through the slime effortlessly... and it effortlessly comes back together. unharmed. It lashes out, taking your shortswords and smacking you away.");
+                            pc.shortsword = 0;
+                            pc.health -= 1;
+                            if(pc.health < 1){
+                                alert("you are somehow hurt enough that this slight hit kills you. dang.");
+                                GameEnd();
+                            }
+                        }
+                        else if(quit){
+                            var weapon2 = confirm("do you want to use the silver sword?");
+                            if(weapon2){
+                                alert("As you swipe the shimmering blade through the slime creature, it vaporizes entirely. You hear a clink as a bronze key drops to the floor from inside the slime.");
+                                slime = 0;
+                                Room12();
+                            }
+                            else if(quit){
+                                alert("what do you want, miscreant? You have no more weapons, what do you want to use? your wit? it must not be very sharp! the slime charges you, engulfing you entirely before crushing your entire frame. you are dead.");
+                                GameEnd();
+                            }
+                        }
+                    }
+                    else if(pc.silversword == 1 && pc.shortsword == 0){
+                        alert("You swing your shimmering blade through the slime, vaporizing it. You hear a clink as a bronze key from inside the slime drops to the floor.");
+                        slime = 0;
+                        Room12();
+                    }
+                    else if(pc.silversword == 0 && pc.shortsword == 1){
+                        alert("you swing the shortswords through the slime effortlessly... and it effortlessly comes back together. unharmed. It lashes out, taking your shortswords and smacking you away.");
+                        pc.shortsword = 0;
+                        pc.health -= 1;
+                        if(pc.health < 1){
+                                alert("you are somehow hurt enough that this slight hit kills you. dang.");
+                                GameEnd();
+                    }
                     }
                 }
                 break;
             case "talk":
             case "diplomacy":
-                
+                alert("If you intended to talk to the slime, first, let me ask you... what the heck? it doesn't listen as it slams you into the wall. You hear some things break. those things hurt a lot.");
+                pc.health -= 3;
+                if(pc.health < 1){
+                    alert("yeahhhh... you're dead.");
+                }
                 break;
             case "inspect":
-                
+                var slimeInspect = confirm("Are you sure you want to be inspecting stuff with a hostile creature here?");
+                if(slimeInspect){
+                    alert("the slime grabs your head and proceeds to bash it on the wall, but you notice a shiny object inside of it before you hit the wall.");
+                    pc.health -= 4;
+                    if(pc.health < 1){
+                        alert("Whay did you think that was a good idea? you're dead.");
+                        GameEnd();
+                    }
+                    else if(quit){
+                        alert("good choice.");
+                        Room1();
+                    }
+                }
                 break;
         }
+    Room1();
     }
     
+    
+    function Room12(){
+        //slime dead room 1.
+    }
     
     function Room2(){
         
