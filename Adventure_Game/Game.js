@@ -50,6 +50,10 @@ function Game(){
     }
     var bookswitch = 0;
     var slime = 1;
+    var ddkey1 = 0;
+    var ddkey2 = 0;
+    var ddkey3 = 0;
+    var ddkey4 = 0;
     
   
     alert("Welcome to the land of the Fey. things tend to get out of hand here, so we have recently implememented large amounts of order. Whenever you want to do something, please put in what action you want to perform, and then the world will ask you what you want to do it to. \n A few things you can do in most places are 'inspect', 'move' and 'take'. we like to tell you that now so we don't have to tell you EVERY STINKING TIME. Have a nice last few moments of your life. See you in the next one!");
@@ -232,7 +236,7 @@ function Game(){
                 case "door 6":
                     alert("you open the door to find... a room, what did you expect?");
                     if(slime == 1){
-                    alert("As you enter the room, you notice a large number of small, gelatinous shapes on the floor. suddenly, they all clamber together, and you are 'staring' down a massive slime. it begins to slowly creep towards you.");
+                    alert("As you enter the room, you notice a large number of small, gelatinous shapes on the floor. suddenly, they all clamber together, and you are 'staring' down a massive slime. It begins to slowly creep towards you.");
                     Room1();
                     }
                     else if(slime == 0){
@@ -576,8 +580,20 @@ function Game(){
             }
         }
         else if(hallway == "cheat"){
-            alert("you asked for it. seeya sucker.");
-            GameEnd();
+            while(!confirm("are you sure you want to try cheating?")){
+                var cheatConfirm = confirm("do you want to do something else?");
+                
+                //if they press cancel twice, it ends the game. just closes it.
+                
+                if(cheatConfirm){
+                    alert("good");
+                    Hallway();
+                }
+                else if(quit){
+                    alert("you asked for it. seeya sucker.");
+                    GameEnd();
+                }
+            }
         }
         else(alert("I don't know what "+hallway+" is."))
         Hallway();
@@ -671,11 +687,11 @@ function Game(){
                         alert("Whay did you think that was a good idea? you're dead.");
                         GameEnd();
                     }
-                    else if(quit){
+                }
+                else if(quit){
                         alert("good choice.");
                         Room1();
                     }
-                }
                 break;
         }
     Room1();
@@ -684,10 +700,61 @@ function Game(){
     
     function Room12(){
         //slime dead room 1.
+        var room12 = prompt("The slime is dead now, the room seems to be safe. what do you do? \n -leave \n -the other things which I have previously stated that I won't tell you again.");
+        switch(room12){
+            case "leave":
+            case "exit":
+                alert("You walk out of the room into the hallway.");
+                Hallway();
+                break;
+            case "take":
+                var take12 = prompt("take what?");
+                if(take12 == "key" || take12 == "bronze key"){
+                    if(pc.key1 == 0 && doors.d4 == 0){
+                        alert("you pick up the bronze key and put it in your pocket.");
+                        pc.key1 += 1;
+                    }
+                    else if(pc.key1 == 1){
+                        alert("You already picked that up... did you forget?");
+                    }
+                    else if(doors.d4 == 1){
+                        alert("you already used the key you found here. By what strange logic did you think it would come back?");
+                    }
+                }
+                else if(take12 == "slime"){
+                    alert("It would appear that the word 'vaporized' is too hard for you to understand. The slime is gone.");
+                }
+                else if(take12 == "black key" || take12 == "hidden key"){
+                    if(ddkey1 == 0){
+                    alert("You pick up the inconspicuous black key and put it in your pocket. I wonder what it opens?");
+                    pc.ddkey += 1;
+                    ddkey1 += 1;
+                    }
+                    else if(ddkey1 == 1){
+                        alert("You already took that... trying to cheat, are we?");
+                    }
+                }
+                else(alert("I don't know what "+take12+" is."));
+                Room12();
+                break;
+            case "inspect":
+            case "search":
+            case "look":
+                var look12 = prompt("inspect what?"){
+                    if(look12 == "area" || look12 == "room" || look12 == "floor"){
+                        alert("You look around for a bit. You find four walls, a floor, a ceiling, and a door. Not very interesting. In fact, this is the most boring room ever. Oh, and you found a black key too.");
+                        ddkey1 += 1;
+                        pc.ddkey +=1;
+                    }
+                    else(alert("not much to look at... maybe you should check the area."));
+                    Room12();
+                }
+                break;
+        }
     }
     
     function Room2(){
-        
+    //make sure to call something like a name out of an array here. (look at github).    
     }
     
     
