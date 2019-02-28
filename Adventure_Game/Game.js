@@ -54,6 +54,8 @@ function Game(){
     var ddkey2 = 0;
     var ddkey3 = 0;
     var ddkey4 = 0;
+    var oldman = 0;
+    var randomadvice = ["the answer is 42", "You don't need to know that right now", "Ah, but did you think about this? which came first, the chicken or the egg?", "eating dynamite will solve this problem", "look in that pot over there. You will find the answer you seek."];
     
   
     alert("Welcome to the land of the Fey. things tend to get out of hand here, so we have recently implememented large amounts of order. Whenever you want to do something, please put in what action you want to perform, and then the world will ask you what you want to do it to. \n A few things you can do in most places are 'inspect', 'move' and 'take'. we like to tell you that now so we don't have to tell you EVERY STINKING TIME. Have a nice last few moments of your life. See you in the next one!");
@@ -219,11 +221,14 @@ function Game(){
                 case "through door 4":
                 case "door 4":
                     if(doors.d4 == 0){
-                        alert("you did see the lock on the door, right?");
+                        alert("The door is locked...?");
                     }
                     else if(doors.d4 == 1){
-                        alert("the lock is now gone, and you pass through the door.");
+                        alert("the lock is now gone, and you can pass through the door.");
                         Room2();
+                    }
+                    else if(doors.d4 == 2){
+                        alert("that old fart locked the door behind you and you have no way of getting a key to that door again.");
                     }
                     break;
                     
@@ -404,7 +409,7 @@ function Game(){
                         else(alert("fat chance, fatso."));
                     }
                     else if(dd == "unlock" || dd == "use key"){
-                        if(pc.ddkey = 0){
+                        if(pc.ddkey == 0){
                             alert("You kind of don't have any keys for any of the locks on this door, which are all strangely identical.");
                         }
                         else if(pc.ddkey > 0){
@@ -613,9 +618,6 @@ function Game(){
                 }
                 break;
             case "attack":
-                
-                //I really want this to only list the objects that the player has in their inventory.
-                
                 var attack = prompt("attack the slime with what? \n -fist \n -weapon").toLowerCase();
                 if(attack == "fist"){
                     alert('you punch the gelatinous creature. OBVIOUSLY, your hand sinks in. You feel a great pain as the slime presses in on your arm, crushing it. You scream as you pull out your hand. You can still use the arm, it seems.');
@@ -697,7 +699,6 @@ function Game(){
     Room1();
     }
     
-    
     function Room12(){
         //slime dead room 1.
         var room12 = prompt("The slime is dead now, the room seems to be safe. what do you do? \n -leave \n -the other things which I have previously stated that I won't tell you again.");
@@ -740,7 +741,7 @@ function Game(){
             case "inspect":
             case "search":
             case "look":
-                var look12 = prompt("inspect what?"){
+                var look12 = prompt("inspect what?");
                     if(look12 == "area" || look12 == "room" || look12 == "floor"){
                         alert("You look around for a bit. You find four walls, a floor, a ceiling, and a door. Not very interesting. In fact, this is the most boring room ever. Oh, and you found a black key too.");
                         ddkey1 += 1;
@@ -748,25 +749,55 @@ function Game(){
                     }
                     else(alert("not much to look at... maybe you should check the area."));
                     Room12();
-                }
                 break;
         }
     }
     
     function Room2(){
-    //make sure to call something like a name out of an array here. (look at github).    
-    }
-    
+        var room2door = confirm('As you open the bronze door, you hear a croaking old voice. "Don\'t open that door, young person! If you look at me, I can\'t help you on your... uhhh... quest. Give me a minute to get properly situated. \n \n -do you give him a minute?"');
+        if(room2door){
+            alert("you wait for the old person to \"get himself properly situated,\" like a respectable young person. He soon tells you he's ready, and you walk in. It appears to be the exact same kind of room as the one behind door 6, only without a slime and with a wierd old man sitting on a pillow behind a transparent cloth. It smells like literal crap.");
+            prompt('the old man says "come forward. what information might I help you with?" \n -you can ask anything.');
+            var advice = alert(randomadvice[Math.floor(Math.random()* 4)]);
+            if(advice == "look in that pot over there. You will find the answer you seek."){
+                var potcheck = confirm("do you check the pot?");
+                if(potcheck){
+                    alert("you find inside the pot... some crap. and two keys, but that is beside the point. The answer was crappy. you look up and the old man is gone. there is nothing left to do here. you exit into the hallway.");
+                    pc.key2 += 1;
+                    pc.ddkey += 1;
+                    doors.d4 += 1;
+                    Hallway();
+                }
+            }
+            else{
+                alert("this old fart is just joking around. let's go.");
+                Hallway();
+            }
+        }
+        else if(!room2door){
+                alert("you push open the door to see an old man sitting on a chamber pot. \"what is wrong with kids these days?! can you not wait your turn for the toilet?\" He stands up, picks up the pot, and hurls it at you with insane agility. You can't even dodge. The pot breaks open on your head, and it's contents end up all over you. You feel two solid pieces amongst the cream now plastered on your face.");
+                pc.health -= 4;
+                if(pc.health < 1){
+                    alert("You die the crappy death. That's what you get for being rude. What the crap is wrong with you?");
+                    GameEnd();
+                }
+                else if(pc.health > 0){
+                    alert("You eventually get the crap out of your eyes, and find two keys inside it all. A silver key and a black one. The old man appears to be 'using' another pot. best leave him alone, since he would probably kill you with that second projectile. You leave.");
+                pc.key2 += 1
+                pc.ddkey += 1;
+                doors.d4 += 1;
+                Hallway();
+                }
+            }
+        }
     
     function Room3(){
         
     }
     
-    
     function Room4(){
         
     }
-    
     
     function GameEnd(){
         alert("Game over, go away or restart.");
