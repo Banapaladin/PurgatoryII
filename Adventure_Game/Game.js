@@ -1,16 +1,3 @@
-//document.write("Hello World!");
-//document.write("<h1> hello bob.");
-// I was thinking maybe have my game be a player vs world game. start with the above bit?
-/*
-just practicing those comments
-multiline comments
-*/
-//alert("Warning bob... Warning!");
-//state the obvious
-//confirm("Do you like cheese?");
-// takes ok or cancel feedback
-//prompt("What kind of cheese?");
-// text feedback
 /*
 while loop:
 while(!confirm("are you sure you want that?")){
@@ -54,11 +41,11 @@ function Game(){
     var ddkey2 = 0;
     var ddkey3 = 0;
     var ddkey4 = 0;
-    var oldman = 0;
     var randomadvice = ["the answer is 42", "You don't need to know that right now", "Ah, but did you think about this? which came first, the chicken or the egg?", "eating dynamite will solve this problem", "look in that pot over there. You will find the answer you seek."];
     
   
     alert("Welcome to the land of the Fey. things tend to get out of hand here, so we have recently implememented large amounts of order. Whenever you want to do something, please put in what action you want to perform, and then the world will ask you what you want to do it to. \n A few things you can do in most places are 'inspect', 'move' and 'take'. we like to tell you that now so we don't have to tell you EVERY STINKING TIME. Have a nice last few moments of your life. See you in the next one!");
+    alert("you have ten arbitrary points that define your state of health. don't lose them all.");
     
     var PC = prompt("What is your name, miscreant?");
     
@@ -797,7 +784,7 @@ function Game(){
             Hallway();
         }
         else if(room3 == "inspect" || room3 == "search" || room3 == "look"){
-            alert("you search the incredibly repetitive room, and find that the silver pedestal has an engraving. it says \" return thy blade to this stone, and the way forward will be shown.\" it has a diamond-shaped hole in the top.")
+            alert("you search the incredibly repetitive room, and find that the silver pedestal has an engraving. it says \"Return thy blade to this stone, and the way forward will be shown.\" it has a diamond-shaped hole in the top. Maybe you can 'interact' with this somehow?");
         }
         else if(room3 == "take"){
             prompt("what do you want to take (hint, there is nothing to take.)");
@@ -805,17 +792,60 @@ function Game(){
         }
         else if(room3 == "narcissus"){
             if(pc.health == 10){
-                alert("you are a strong young elf, polite, strong, and wise. You admire yourself in the mirror for a while. A long while. You get hungry. Really hungry. Your malnutritioned form is no longer so beautiful.");
+                alert("You are a strong young elf; polite, strong, and wise. You admire yourself in the mirror for a while. A long while. You get hungry. Really hungry. Your malnutritioned form is no longer so beautiful.");
                 pc.health -= 2;
             }
             else if(pc.health < 10 && pc.health > 5){
-                (I left off here, delete this line.
+                alert("you look pretty beaten up, but still got that strong look.");
+            }
+            else if(pc.health < 6 && pc.health > 1){
+                alert("you are in really bad shape, the sooner you get out of here, the better.");
+            }
+            else if(pc.health == 1){
+                alert("you are in critical condition, if anything happens, you're dead. an interesting thought, that. Isn't this supposed to be the afterlife? How could you die here? wait, how did you remember this is supposed to be the afterlife? You remember an explosion and a scream, but no pain... You aren't really dead, are you? \n As you reach this conclusion, you wonder where in the heck this nonsensical place could be... wait a minute... could it be? \n you pinch yourself. \n ...and wake up.");
+                alert("thanks for playing.");
+                GameEnd();
+            }
+        }
+        else if(room3 == "interact"){
+            var r3Interact = prompt("what do you want to interact with? \n -pedestal \n -mirrors");
+            switch(r3Interact){
+                case "pedestal":
+                case "sword":
+                    var insert = confirm("do you place the sword in the obvious hole in the pedestal?");
+                    if(insert){
+                        alert("when you slide the shimmering silver blade into the matching pedestal, you hear a click, and the sword locks in place. You feel your pocket grow noticeably heavier. inside are a golden key and a black one. While you are looking at them, the floor beneath you also vanishes, and you tumble into the darkness. suddenly, you stop falling, and are back in the hallway again. The silver door is closed.");
+                        pc.ddkey += 1;
+                        pc.key3 += 1;
+                        doors.d8 = 0;
+                        Hallway();
+                    }
+                    else if(!insert){
+                        alert("whenever you're ready...");
+                    }
+                    break;
+                case "mirrors":
+                case "walls":
+                case "wall":
+                    alert("There really isn't anything to do to the mirrored walls... other than look at them.");
+                    break;
+                default:
+                    alert("nope. sorry.");
+                    Room3();
             }
         }
     }
     
     function Room4(){
-        
+        // the continuity conundrum. where the creator realizes he hasn't met all the requirement yet, and so jams them all in here.
+        var room4 = prompt("In this room, you are shocked by the garish colors everywhere. This place is freaking PSYCHIDELIC. It's almost hypnotizing to look in the same spot for too long. So many colors... \n what do you do? \n -leave \n -");
+        switch(room4){
+            case "":
+                
+            default:
+                alert("I don't know what "+room4+" is.");
+                Room4();
+        }
     }
     
     function GameEnd(){
