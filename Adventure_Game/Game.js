@@ -792,7 +792,27 @@ function Game(){
         }
     
     function Room3(){
-        
+        var room3 = prompt("This is a room made of mirrors. the circular walls are covered in mirrors, and in the center of the room is a gleaming silver pedestal. what do you do? \n the usuals \n narcissus /n leave");
+        if(room3 == "leave" || room3 == "exit" || room3 == "out"){
+            alert("You leave the room. whoop=de-doo.");
+            Hallway();
+        }
+        else if(room3 == "inspect" || room3 == "search" || room3 == "look"){
+            alert("you search the incredibly repetitive room, and find that the silver pedestal has an engraving. it says \" return thy blade to this stone, and the way forward will be shown.\" it has a diamond-shaped hole in the top.")
+        }
+        else if(room3 == "take"){
+            prompt("what do you want to take (hint, there is nothing to take.)");
+            alert("seriously, there is nothing you can take.");
+        }
+        else if(room3 == "narcissus"){
+            if(pc.health == 10){
+                alert("you are a strong young elf, polite, strong, and wise. You admire yourself in the mirror for a while. A long while. You get hungry. Really hungry. Your malnutritioned form is no longer so beautiful.");
+                pc.health -= 2;
+            }
+            else if(pc.health < 10 && pc.health > 5){
+                if(bleh
+            }
+        }
     }
     
     function Room4(){
