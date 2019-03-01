@@ -585,20 +585,19 @@ function Game(){
             }
         }
         else if(hallway == "cheat"){
-            while(!confirm("are you sure you want to try cheating?")){
+            while(!confirm("are you REALLY sure you want to try cheating?")){
                 var cheatConfirm = confirm("do you want to do something else?");
-                
-                //if they press cancel twice, it ends the game. just closes it.
-                
                 if(cheatConfirm){
                     alert("good");
                     Hallway();
                 }
-                else if(quit){
+                else if(!cheatConfirm){
                     alert("you asked for it. seeya sucker.");
                     GameEnd();
                 }
             }
+            alert("you asked for it, seeya sucker.");
+            GameEnd();
         }
         else(alert("I don't know what "+hallway+" is."))
         Hallway();
@@ -810,7 +809,7 @@ function Game(){
                 pc.health -= 2;
             }
             else if(pc.health < 10 && pc.health > 5){
-                if(bleh
+                (I left off here, delete this line.
             }
         }
     }
