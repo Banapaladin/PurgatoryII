@@ -952,10 +952,16 @@ function Game(){
                         alert("you have slain two vampires.");
                     }
                 }
-                alert("the vampires are all dead. you loot the bodies and find a black key on one of them. when you touch it, everything goes dark, and you wake up in front of the doubledoors out in the hallway holding the key.");
-                pc.ddkey += 1;
-                doors.d10 = 0;
-                Hallway();
+                if(pc.health < 1){
+                    alert("you died against the vampire's superior forces.");
+                    GameEnd();
+                }
+                else if(pc.health >= 1){
+                    alert("the vampires are all dead. you loot the bodies and find a black key on one of them. when you touch it, everything goes dark, and you wake up in front of the doubledoors out in the hallway holding the key.");
+                    pc.ddkey += 1;
+                    doors.d10 = 0;
+                    Hallway();
+                }
             }
             else(alert("what do you mean?"));
         Vampires();
