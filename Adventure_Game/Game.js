@@ -28,6 +28,7 @@ function Game(){
         key2:0,
         key3:0,
         guilt:0,
+        shoes:0,
     }
     var doors = {
         dd:0,
@@ -38,18 +39,22 @@ function Game(){
     var bookswitch = 0;
     var slime = 1;
     var ddkey1 = 0;
+    /*
+    unable to find the time to implement these.
     var ddkey2 = 0;
     var ddkey3 = 0;
     var ddkey4 = 0;
-    var randomadvice = ["the answer is 42", "You don't need to know that right now", "Ah, but did you think about this? which came first, the chicken or the egg?", "eating dynamite will solve this problem", "look in that pot over there. You will find the answer you seek."];
+    */
+    const randomadvice = ["the answer is 42", "Ah, but did you think about this? which came first, the chicken or the egg?", "Eating lit dynamite will give you the answer", "look in that pot over there. You will find the answer you seek."];
     
   
     alert("Welcome to the land of the Fey. things tend to get out of hand here, so we have recently implememented large amounts of order. Whenever you want to do something, please put in what action you want to perform, and then the world will ask you what you want to do it to. \n A few things you can do in most places are 'inspect', 'move' and 'take'. we like to tell you that now so we don't have to tell you EVERY STINKING TIME. Have a nice last few moments of your life. See you in the next one!");
     alert("you have ten arbitrary points that define your state of health. don't lose them all.");
     
-    var PC = prompt("What is your name, miscreant?");
+    let name = prompt("What is your name, miscreant?");
+    // I used let because it really doesn't matter.
     
-    prompt("What a name. huh. you know, I really don't care. You will be dead soon. Any last words, "+ PC+"?");
+    prompt("What a name. huh. you know, I really don't care. You will be dead soon. Any last words, "+name+"?");
     alert("I really don't care, to be honest. Time to end this once and for all, you scum!");
     alert("The figure before you suddenly flashes with bright light and there is an explosion. You hear a scream, most likely your own.");
     
@@ -169,7 +174,6 @@ function Game(){
         Temple();
     }
     
-    
     function Hallway(){
         var hallway = prompt("You are in a long hallway with ten doors, and one large set of double-doors at the end of the hallway. \n -move \n -interact with door/interact/door").toLowerCase();
         if(hallway == "move"){
@@ -184,11 +188,13 @@ function Game(){
                     
                 case "through door 1":
                 case "door 1":
+                case "1":
                     alert("for some strange reason, the architect decided it was a good idea to have a brick wall here.");
                     break;
                     
                 case "through door 2":
                 case "door 2":
+                    case "2":
                     alert("before you can respond, a hand darts out of the darkness and shanks you.");
                     pc.health -= 2;
                     if(pc.health > 0){
@@ -202,11 +208,13 @@ function Game(){
                     
                 case "through door 3":
                 case "door 3":
+                    case "3":
                     alert("This architect really likes brick walls.");
                     break;
                     
                 case "through door 4":
                 case "door 4":
+                    case "4":
                     if(doors.d4 == 0){
                         alert("The door is locked...?");
                     }
@@ -221,11 +229,13 @@ function Game(){
                     
                 case "through door 5":
                 case "door 5":
+                    case "5":
                     alert("it's another brick wall... seriously?");
                     break;
                     
                 case "through door 6":
                 case "door 6":
+                    case "6":
                     alert("you open the door to find... a room, what did you expect?");
                     if(slime == 1){
                     alert("As you enter the room, you notice a large number of small, gelatinous shapes on the floor. suddenly, they all clamber together, and you are 'staring' down a massive slime. It begins to slowly creep towards you.");
@@ -238,11 +248,13 @@ function Game(){
                     
                 case "through door 7":
                 case "door 7":
+                    case "7":
                     alert("okay, this architect has a problem with brick walls.");
                     break;
                     
                 case "through door 8":
                 case "door 8":
+                    case "8":
                     if(doors.d8 == 0){
                         alert("Seriously, can't you tell you need a key, and not any key, the RIGHT key. There are a lot of keys... and brick walls. this door be locked. maybe you could try UNlocking it?");
                     }
@@ -254,11 +266,13 @@ function Game(){
                     
                 case "through door 9":
                 case "door 9":
+                    case "9":
                     alert("another. freaking. brick. wall. what fun.");
                     break;
                     
                 case "through door 10":
                 case "door 10":
+                    case "10":
                     if(doors.d10 == 0){
                         alert("I'm afraid this door is locked. If you have the key, please don't forget to use it.");
                     }
@@ -384,7 +398,7 @@ function Game(){
             }
         }
         else if(hallway == "interact with door" || hallway == "interact" || hallway == "door"){
-            var hallInteract = prompt("which door? \n -doubledoors \n -door #");
+            var hallInteract = prompt("which door? \n -doubledoors \n -door #").toLowerCase();
             switch(hallInteract){
                 case "doubledoors":
                     var dd = prompt("do what to the double doors? \n -open \n -unlock/use key").toLowerCase();
@@ -572,24 +586,15 @@ function Game(){
             }
         }
         else if(hallway == "cheat"){
+            var cheatConfirm = confirm("do you want to try cheating?");
             while(!confirm("are you REALLY sure you want to try cheating?")){
-                var cheatConfirm = confirm("do you want to do something else?");
-                if(cheatConfirm){
-                    alert("good");
-                    Hallway();
-                }
-                else if(!cheatConfirm){
-                    alert("you asked for it. seeya sucker.");
-                    GameEnd();
-                }
+                cheatConfirm = confirm("do you want to do something else?");
             }
-            alert("you asked for it, seeya sucker.");
-            GameEnd();
+            alert("Not a chance. Don't try.");
         }
         else(alert("I don't know what "+hallway+" is."))
         Hallway();
     }
-    
     
     function Room1(){
         var room1 = prompt("What do you do? \n -run/leave \n -attack \n -talk \n -inspect").toLowerCase();
@@ -687,7 +692,7 @@ function Game(){
     
     function Room12(){
         //slime dead room 1.
-        var room12 = prompt("The slime is dead now, the room seems to be safe. what do you do? \n -leave \n -the other things which I have previously stated that I won't tell you again.");
+        var room12 = prompt("The slime is dead now, the room seems to be safe. what do you do? \n -leave \n -the other things which I have previously stated that I won't tell you again.").toLowerCase();
         switch(room12){
             case "leave":
             case "exit":
@@ -695,7 +700,7 @@ function Game(){
                 Hallway();
                 break;
             case "take":
-                var take12 = prompt("take what?");
+                var take12 = prompt("take what?").toLowerCase();
                 if(take12 == "key" || take12 == "bronze key"){
                     if(pc.key1 == 0 && doors.d4 == 0){
                         alert("you pick up the bronze key and put it in your pocket.");
@@ -727,7 +732,7 @@ function Game(){
             case "inspect":
             case "search":
             case "look":
-                var look12 = prompt("inspect what?");
+                var look12 = prompt("inspect what?").toLowerCase();
                     if(look12 == "area" || look12 == "room" || look12 == "floor"){
                         alert("You look around for a bit. You find four walls, a floor, a ceiling, and a door. Not very interesting. In fact, this is the most boring room ever. Oh, and you found a black key too.");
                         ddkey1 += 1;
@@ -778,7 +783,7 @@ function Game(){
         }
     
     function Room3(){
-        var room3 = prompt("This is a room made of mirrors. the circular walls are covered in mirrors, and in the center of the room is a gleaming silver pedestal. what do you do? \n the usuals \n narcissus /n leave");
+        var room3 = prompt("This is a room made of mirrors. the circular walls are covered in mirrors, and in the center of the room is a gleaming silver pedestal. what do you do? \n the usuals \n narcissus \n leave").toLowerCase();
         if(room3 == "leave" || room3 == "exit" || room3 == "out"){
             alert("You leave the room. whoop=de-doo.");
             Hallway();
@@ -806,15 +811,17 @@ function Game(){
                 alert("thanks for playing.");
                 GameEnd();
             }
+            Room3();
         }
         else if(room3 == "interact"){
-            var r3Interact = prompt("what do you want to interact with? \n -pedestal \n -mirrors");
+            var r3Interact = prompt("what do you want to interact with? \n -pedestal \n -mirrors").toLowerCase();
             switch(r3Interact){
                 case "pedestal":
                 case "sword":
                     var insert = confirm("do you place the sword in the obvious hole in the pedestal?");
                     if(insert){
                         alert("when you slide the shimmering silver blade into the matching pedestal, you hear a click, and the sword locks in place. You feel your pocket grow noticeably heavier. inside are a golden key and a black one. While you are looking at them, the floor beneath you also vanishes, and you tumble into the darkness. suddenly, you stop falling, and are back in the hallway again. The silver door is closed.");
+                        pc.silversword = 0;
                         pc.ddkey += 1;
                         pc.key3 += 1;
                         doors.d8 = 0;
@@ -837,15 +844,121 @@ function Game(){
     }
     
     function Room4(){
-        // the continuity conundrum. where the creator realizes he hasn't met all the requirement yet, and so jams them all in here.
-        var room4 = prompt("In this room, you are shocked by the garish colors everywhere. This place is freaking PSYCHIDELIC. It's almost hypnotizing to look in the same spot for too long. So many colors... \n what do you do? \n -leave \n -");
+        var room4 = prompt("In this room, you are shocked by the garish colors everywhere. This place is freaking PSYCHIDELIC. It's almost hypnotizing to look in the same spot for too long. So many colors... \n \n what do you do? \n \n -leave \n -look/search/inspect (in case you forgot) \n -seizure \n -eat the lit dynamite in the corner. \n -interact/use").toLowerCase();
         switch(room4){
-            case "":
-                
+            case "leave":
+            case "exit":
+                alert("when you turn to leave... the door is missing. That might be a problem.");
+                break;
+            case "look":
+            case "search":
+            case "inspect":
+                if(pc.shoes == 0){
+                alert("you do your best to look around the strange room full of colorful hypnotic designs, some of which are moving. \n You notice: \n -dynamite taped firmly in the corner \n -psychidelic shoes.");
+                }
+                else if(pc.shoes == 1){
+                    alert("There is one figure huddled in each corner, each looking at you warily. in the corner where the dynamite, there is instead a sandwich. one wall says \"welcome to the continuity conundrum, where all is not what it should be.\" another wall says \"the old man lies.\" and another says \"gluttony is a DEADLY sin.\" what strange phrases.");
+                }
+                break;
+            case "seizure":
+                alert("you don't have epilepsy,so you apply search and seizure without a warrant. Good thing this isn't America.");
+            case "take":
+                var r4Take = prompt("what do you want to take?").toLowerCase();
+                if(r4Take == "dynamite"){
+                    alert("the dynamite is very thoroughly secured to the wall. You can't easily take it. It appears to be counting down, but you have plenty of time... if you can find an exit.");
+                }
+                else if(r4Take == "shoes" || r4Take == "psychidelic shoes"){
+                    alert("You put on the shoes and you start to see things. Images form into words, and words merge into sentences. moving images turn into dark figures huddled against the walls.");
+                    pc.shoes = 1;
+                }
+                else(alert("I don't know what "+r4Take+" is."));
+                Room4();
+                break;
+            case "eat":
+            case "dynamite":
+            case "eat dynamite":
+            case "eat the dynamite":
+            case "eat sandwich":
+            case "sandwich":
+            case "eat the dynamite":
+            case "eat the sandwich":        
+                if(pc.shoes == 0){
+                    alert("somehow, you take the well secured dynamite off the wall without any effort and eat it. it tastes like cheese, lettuce, and bacon. who'd have known? you notice that the moving patterns are moving more erratically and growing closer to you. what a strange room. A sharp pain on your neck is the last thing you feel before youy die. Miraculously, you wake up, still dead. You join the hippie vampires for the rest of your incredibly long days. Tubular, bro.");
+                    GameEnd();
+                }
+                else if(pc.shoes == 1){
+                    alert("You eat the dynamite-turned-sandwich, which happens to contain bacon, lettuce, and cheese.");
+                    Vampires();
+                }
+                break;
+            case "use":
+            case "interact":
+                if(pc.shoes == 0){
+                    var r4Interact = prompt("interact with what? \n -dynamite \n -colorful walls \n -shoes").toLowerCase();
+                    if(r4Interact == "dynamite"){
+                        alert("no matter what you try, none of the buttons work.");
+                    }
+                    else if(r4Interact == "walls" || r4Interact == "colorful walls" || r4Interact == "wall"){
+                        alert("strangely, the moving patterns are effectively dodging you, moving away faster than you can follow.");
+                    }
+                    else if(r4Interact == "shoes"){
+                        alert("You put on the shoes and you start to see things. Images form into words, and words merge into sentences. moving images turn into dark figures huddled against the walls.");
+                        pc.shoes = 1;
+                    }
+                    else(alert("I don't know what you want me to do."));
+                }
+                else if(pc.shoes == 1){
+                    var r4Interact = prompt("interact with what? \n -sandwich \n -dark figures").toLowerCase();
+                    if(r4Interact == "sandwich"){
+                        alert("what is there to do with a sandwich besides eat it? for some strange reason, you can't pick it up, but you could eat it off the ground if you tried.");
+                    }
+                    else if(r4Interact == "figure" || r4Interact == "figures" || r4Interact == "dark figures"){
+                        alert("as you draw near to one figure, it turns and hisses at you with massive incisors and bloodshot eyes. best leave vampires alone, friend.");
+                    }
+                }
+                break;
             default:
                 alert("I don't know what "+room4+" is.");
                 Room4();
         }
+    }
+    
+    function Vampires(){
+       var vampires = prompt("These figures are clearly vampires, and are advancing on you slowly. what do you do? \n -talk \n -fight \n run").toLowerCase();
+            if(vampires == "talk"){
+                if(pc.health > 5){
+                    alert("As you try to talk it out with the vampires, they lunge at you, crazed by hunger, and you are swiftly dead. bye.");
+                    GameEnd();
+                }
+                else if(pc.health < 6){
+                    alert("The vampires look at your pathetic frame and decide you aren't even a snack. One pulls out a small black object and throws it at you. Beaten as you are, you can't dodge, and when the object hits you, everything goes dark. you wake up in the hallway with a black key on your chest.");
+                    pc.ddkey += 1;
+                    doors.d10 = 0;
+                    Hallway();
+                }
+            }
+            else if(vampires == "run"){
+                alert("a futile effort.");
+            }
+            else if(vampires == "fight" || vampires == "attack"){
+                alert("an epic fight ensues...");
+                var v = 9;
+                for(i = pc.health; i > 0 && v > 0 ; i-- & v--){
+                    alert("you exchange blows with a vampire");
+                    if(v == 6){
+                        alert("you killed one vampire");
+                    }
+                    else if(v == 3){
+                        alert("you have slain two vampires.");
+                    }
+                }
+                alert("the vampires are all dead. you loot the bodies and find a black key on one of them. when you touch it, everything goes dark, and you wake up in front of the doubledoors out in the hallway holding the key.");
+                pc.ddkey += 1;
+                doors.d10 = 0;
+                Hallway();
+            }
+            else(alert("what do you mean?"));
+        Vampires();
     }
     
     function GameEnd(){
