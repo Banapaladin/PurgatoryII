@@ -29,12 +29,18 @@
             }
             div#square{
                 position: absolute;
-                left:100px;
-                top:250px;
+                left:400px;
+                top:400px;
                 background-color:yellow;
                 width: 100px;
                 height: 100px;
-                border:outset 100px red;
+                border:outset 10px red;
+                transition: 5s;
+            }
+            div#square:hover{
+                border:outset 400px blue;
+                left:0px;
+                top:0px;
             }
             div#circle{
                 background-color: chartreuse;
@@ -42,16 +48,27 @@
                 width: 200px;
                 border-radius: 100%;
                 position: absolute;
-                left:500px;
-                top:100px;
+                left:800px;
+                top:500px;
                 border:dashed 20px purple;
+                z-index: 1;
+                transition: 3s;
+            }
+            div#circle:hover{
+                background-color: deeppink;
+                height:300px;
+                width:500px;
+                border:solid 10px yellow;
             }
             div#tringle{
                 position: absolute;
-                left:500px;
-                top:500px;
-                background-color: black
-                    
+                left:100px;
+                top:300px;
+                width: 0px;
+                height: 0px;
+                border-bottom: solid 100px transparent;
+                border-top: solid 100px transparent;
+                border-right: solid 100px violet;
             }
             div#square1{
                 background-color: white;
@@ -234,32 +251,32 @@
                 width: 20px;
                 height: 20px;
                 position: absolute;
-                left:100px;
-                top:600px;
+                left:120px;
+                top:700px;
             }
             div#square24{
                 background-color: black;
                 width: 20px;
                 height: 20px;
                 position: absolute;
-                left:100px;
-                top:600px;
+                left:160px;
+                top:700px;
             }
             div#square25{
                 background-color: black;
                 width: 20px;
                 height: 20px;
                 position: absolute;
-                left:100px;
-                top:600px;
+                left:200px;
+                top:700px;
             }
             div#square26{
                 background-color: black;
                 width: 20px;
                 height: 20px;
                 position: absolute;
-                left:100px;
-                top:600px;
+                left:240px;
+                top:700px;
             }
             div#square27{
                 background-color: black;
@@ -267,55 +284,87 @@
                 height: 20px;
                 position: absolute;
                 left:100px;
-                top:600px;
+                top:720px;
             }
             div#square28{
                 background-color: black;
                 width: 20px;
                 height: 20px;
                 position: absolute;
-                left:100px;
-                top:600px;
+                left:140px;
+                top:720px;
             }
             div#square29{
                 background-color: black;
                 width: 20px;
                 height: 20px;
                 position: absolute;
-                left:100px;
-                top:600px;
+                left:180px;
+                top:720px;
             }
             div#square30{
                 background-color: black;
                 width: 20px;
                 height: 20px;
                 position: absolute;
-                left:100px;
-                top:600px;
+                left:120px;
+                top:740px;
             }
             div#square31{
                 background-color: black;
                 width: 20px;
                 height: 20px;
                 position: absolute;
-                left:100px;
-                top:600px;
+                left:220px;
+                top:720px;
             }
             div#square32{
                 background-color: black;
                 width: 20px;
                 height: 20px;
                 position: absolute;
-                left:100px;
-                top:600px;
+                left:200px;
+                top:740px;
             }
             div#square33{
                 background-color: black;
                 width: 20px;
                 height: 20px;
                 position: absolute;
-                left:100px;
-                top:600px;
+                left:160px;
+                top:740px;
+            }
+            div#square34{
+                background-color: black;
+                width: 20px;
+                height: 20px;
+                position: absolute;
+                left:240px;
+                top:740px;
+            }
+            img#banana{
+                display:block;
+                position:absolute;
+                left:300px;
+                top:700px;
+                border: dashed 5px yellow;
+                border-radius: 20%;
+                z-index: 0
+            }
+            img#css{
+                box-shadow: -3px -3px 5px;
+                position: absolute;
+                left:500px;
+                top:80px;
+                width: 100px;
+                border:outset 10px grey;
+                border-radius: 100%;
+                transition: 2s;
+            }
+            img#css:hover{
+                width: 400px;
+                left:750px;
+                top: 50;
             }
         </style>
     </head>
@@ -354,9 +403,14 @@
         <div id="square27"></div>
         <div id="square28"></div>
         <div id="square29"></div>
+        <div id="square30"></div>
         <div id="square31"></div>
         <div id="square32"></div>
         <div id="square33"></div>
+        <div id="square34"></div>
+        
+        <img src="banana.png" id="banana">
+        <img src="css.png" id="css">
 
     </body>
 </html>
