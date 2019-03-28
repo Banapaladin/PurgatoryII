@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <canvas id="myCanvas" width="1230px" height="1230px" style="border:10px dashed black;background-color: bisque">
+    </canvas>
+    <canvas id="myCanvas2" width="1230px" height="1230px" style="border:10px dashed black;background-color: bisque">
+    </canvas>
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        
+        ctx.fillStyle = "yellow";
+        ctx.fillRect(165,165,900,900);
+        
+        ctx.fillStyle = "blue";
+        ctx.fillRect(165,165,450,450);
+        
+        ctx.fillStyle = "red";
+        ctx.fillRect(615,615,450,450);
+        
+        ctx.moveTo(0,0);
+        ctx.lineTo(1230,1230);
+        ctx.stroke();
+        
+        ctx.moveTo(1230,0);
+        ctx.lineTo(0,1230);
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.arc(615,615,200,0,2*Math.PI);
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.arc(615,615,450,0,2*Math.PI);
+        ctx.stroke();
+    </script>
+    <script>
+        var canvas = document.getElementById("myCanvas2");
+        var ctx = canvas.getContext("2d");
+        var grd = ctx.createLinearGradient(0,200,200,0);
+        grd.addColorStop(0,"green");
+        grd.addColorStop(0,"purple");
+        var rgrd = ctx.createRadialGradient(10,10,10,10,10,100);
+        rgrd.addColorStop(0,"white");
+        rgrd.addColorStop(0,"black");
+        
+        ctx.fillStyle = rgrd;
+        ctx.fillRect(0,0,515,1230);
+        
+        ctx.fillStyle = grd;
+        ctx.fillRect(0,0,1230,515);
+    </script>
+</body>
+</html>
