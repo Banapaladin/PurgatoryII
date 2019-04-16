@@ -1,0 +1,17 @@
+/* stylesheet for Mobile App */
+
+/*reset*/
+html,body,h1,h2,h3,h4,h5,h6,p,ul,ol,li,header,footer,nav{
+    margin:0;
+    padding:0;
+}
+
+/* universal styling */
+body{
+    background-color: aqua;
+}
+div#container{
+    width: 1200px;
+    height: 1200px;
+    background-color: lime;
+}
