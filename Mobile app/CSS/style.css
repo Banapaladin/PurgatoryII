@@ -8,7 +8,7 @@ html,body,h1,h2,h3,h4,h5,h6,p,ul,ol,li,header,footer,nav{
 
 /* universal styling */
 body{
-    background-color:floralwhite;
+    background-color:white;
 }
 div#container{
     width: 100%;
@@ -16,7 +16,7 @@ div#container{
     border: 3px dashed beige;
 }
 header{
-    width:95.8%;
+    width:100%;
     padding:25px;
     background-color:orange;
 }
@@ -29,6 +29,10 @@ div#content{
     width: 100%;
     background-color:blanchedalmond;
 }
+div#content img{
+    width: 1000px;
+}
+/*
 nav{
     width: 100%;
     background-color:lightyellow;
@@ -53,6 +57,30 @@ nav ul li a:hover{
     background-color:burlywood;
     color:antiquewhite;
     text-decoration: underline;
+}
+*/
+.icon-bar{
+    position: absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    background-color:burlywood;
+    overflow:auto;
+}
+.icon-bar a {
+    float: left;
+    width: 20%;
+    text-align: center;
+    padding: 12px 0;
+    transition: all 0.3s ease;
+    color:antiquewhite;
+    font-size: 36px;
+}
+.icon-bar a:hover{
+    background-color:cornsilk;
+}
+.active{
+    background-color: chocolate;
 }
 footer{
     position: absolute;
