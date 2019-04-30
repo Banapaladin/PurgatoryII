@@ -20,6 +20,11 @@ header{
     padding:25px;
     background-color:orange;
 }
+header img#applogo {
+    display:inline-block;
+    margin: auto;
+    width: 50px;
+}
 header h1{
     color:bisque;
     font-family: fantasy;
