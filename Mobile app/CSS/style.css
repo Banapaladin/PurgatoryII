@@ -21,9 +21,9 @@ header{
     background-color:orange;
 }
 header img#applogo {
-    display:inline-block;
+    display:block;
     margin: auto;
-    width: 50px;
+    width: 100px;
 }
 header h1{
     color:bisque;
