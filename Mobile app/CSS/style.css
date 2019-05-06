@@ -15,6 +15,11 @@ div#container{
     background-color:aliceblue;
     border: 3px dashed beige;
 }
+body canvas{
+    display:block;
+    margin:auto;
+    width:300px;
+}
 header{
     width:100%;
     padding:25px;
@@ -36,6 +41,9 @@ div#content{
 }
 div#content img{
     width: 1000px;
+}
+div#text{
+    text-align: center;
 }
 /*
 nav{
