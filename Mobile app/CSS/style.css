@@ -45,11 +45,6 @@ div#content img{
     display: block;
     margin: auto;
 }
-div#contentious img{
-    width: 300px;
-    display: block;
-    margin: auto;
-}
 div#content p{
     display: block;
     text-align: center;
@@ -97,7 +92,7 @@ nav ul li a:hover{
 }
 */
 .icon-bar{
-    position: absolute;
+    position: fixed;
     bottom:0;
     left:0;
     width:100%;
@@ -131,6 +126,31 @@ footer{
 footer h1{
     font-family: "Libre Barcode 39";
     font-size: 20%;
+}
+div#productGrp{
+    max-width: 80%;
+    min-width: 20%;
+    margin: auto;
+}
+figure.product{
+    float: left;
+    margin: 10px 10px auto;
+    min-width: 46%;
+    max-width: 47%;
+    border-radius: 5%;
+    background-color: burlywood
+}
+figure.product img{
+    display: block;
+    padding: 20px 0;
+    width: 80%;
+    margin: auto;
+}
+figure.product figcaption{
+    text-align: center;
+    font-family:monospace,inherit;
+    font-size: 24px;
+    color:darkslategray;
 }
 div.keepopen{
     clear:both;
