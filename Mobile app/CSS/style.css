@@ -155,6 +155,15 @@ figure.product figcaption{
 div.keepopen{
     clear:both;
 }
+div#container form{
+    background-color: antiquewhite;
+}
+div#pic img{
+    display: block;
+    margin: auto;
+    width: 40%;
+    background-color: antiquewhite;
+}
 @media screen and (max-width:600px){
     div#container{
         width:100%;
