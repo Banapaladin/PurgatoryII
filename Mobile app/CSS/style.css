@@ -40,6 +40,11 @@ div#content{
     width: 100%;
     background-color:blanchedalmond;
 }
+div#content h3{
+    display: block;
+    margin: auto;
+    text-align: center;
+}
 div#content img{
     width: 99%;
     display: block;
