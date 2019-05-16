@@ -173,3 +173,10 @@ div#pic img{
         text-align: center;
     }
 }
+legend, span, input, textarea{
+    display:block;
+    margin: auto;
+    text-align: center;
+    font-family: sans-serif;
+    color:firebrick;
+}

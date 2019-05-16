@@ -22,7 +22,6 @@ function Game(){
         silversword:0,
         shortsword:0,
         health:10,
-        chainmail:0,
         ddkey:0,
         key1:0,
         key2:0,
@@ -45,7 +44,7 @@ function Game(){
     var ddkey3 = 0;
     var ddkey4 = 0;
     */
-    const randomadvice = ["the answer is 42", "Ah, but did you think about this? which came first, the chicken or the egg?", "Eating lit dynamite will give you the answer", "look in that pot over there. You will find the answer you seek."];
+    const randomadvice = ["the answer is 42", "Ah, but did you think about this? which came first, the chicken or the egg?", "Eating lit dynamite will give you the answer"];
     
   
     alert("Welcome to the land of the Fey. things tend to get out of hand here, so we have recently implememented large amounts of order. Whenever you want to do something, please put in what action you want to perform, and then the world will ask you what you want to do it to. \n A few things you can do in most places are 'inspect', 'move' and 'take'. we like to tell you that now so we don't have to tell you EVERY STINKING TIME. Have a nice last few moments of your life. See you in the next one!");
@@ -85,7 +84,7 @@ function Game(){
                 alert("you sit down in front of the altar and try to pray, but you just can't focus right now. Just not feeling like you particularly need to repent right now. maybe later.");
             }
             else if(pc.guilt == 6){
-                alert("You reach out to God to forgive you of the horrible things you have done. You seen to have brutalized this elf, and destroyed a holy text. The guilt tears at your soul. You hear a quiet voice saying \"Don't worry, it might be your sword, but you didn't kill that elf. The book was a book of evil magic, thank you.\" \n The voice is so reassuring, it's as if it were perfectly trustworthy. You believe its words. You feel great. Your guilt slips away, and so does your consciousness. You wake up in heaven. \n No, I won't describe it, use your imagination!");
+                alert("You reach out to God to forgive you of the horrible things you have done. You seem to have brutalized this elf, and destroyed a holy text. The guilt tears at your soul. You hear a quiet voice saying \"Don't worry, it might be your sword, but you didn't kill that elf. The book was a book of evil magic, thank you.\" \n The voice is so reassuring, it's as if it were perfectly trustworthy. You believe its words. You feel great. Your guilt slips away, and so does your consciousness. You wake up in heaven. \n No, I won't describe it, use your imagination!");
                 GameEnd();
             }
         }
@@ -749,8 +748,8 @@ function Game(){
         if(room2door){
             alert("you wait for the old person to \"get himself properly situated,\" like a respectable young person. He soon tells you he's ready, and you walk in. It appears to be the exact same kind of room as the one behind door 6, only without a slime and with a wierd old man sitting on a pillow behind a transparent cloth. It smells like literal crap.");
             prompt('the old man says "come forward. what information might I help you with?" \n -you can ask anything.');
-            var advice = alert(randomadvice[Math.floor(Math.random()* 4)]);
-            if(advice == "look in that pot over there. You will find the answer you seek."){
+            var advice = alert(randomadvice[Math.floor(Math.random()* 3)]);
+            if(advice == alert("look in that pot over there. You will find the answer you seek.")){
                 var potcheck = confirm("do you check the pot?");
                 if(potcheck){
                     alert("you find inside the pot... some crap. and two keys, but that is beside the point. The answer was crappy. you look up and the old man is gone. there is nothing left to do here. you exit into the hallway.");
@@ -767,7 +766,7 @@ function Game(){
         }
         else if(!room2door){
                 alert("you push open the door to see an old man sitting on a chamber pot. \"what is wrong with kids these days?! can you not wait your turn for the toilet?\" He stands up, picks up the pot, and hurls it at you with insane agility. You can't even dodge. The pot breaks open on your head, and it's contents end up all over you. You feel two solid pieces amongst the cream now plastered on your face.");
-                pc.health -= 4;
+                pc.health -= 5;
                 if(pc.health < 1){
                     alert("You die the crappy death. That's what you get for being rude. What the crap is wrong with you?");
                     GameEnd();
